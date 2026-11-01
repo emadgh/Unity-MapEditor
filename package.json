@@ -1,0 +1,23 @@
+{
+  "name": "com.emadgh.map-editor",
+  "version": "1.0.0",
+  "displayName": "Map Editor",
+  "description": "Standalone scene authoring: prefab placement, brush painting, physics settling, prefab collections and procedural clotheslines.",
+  "unity": "6000.0",
+  "author": {
+    "name": "Emad Ghasemi",
+    "url": "https://github.com/emadgh"
+  },
+  "keywords": [
+    "map",
+    "editor",
+    "level",
+    "placement",
+    "clothesline"
+  ],
+  "dependencies": {
+    "com.unity.modules.physics": "1.0.0",
+    "com.unity.modules.uielements": "1.0.0",
+    "com.unity.modules.imgui": "1.0.0"
+  }
+}

@@ -1,0 +1,170 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+  <ui:Style src="MapEditorWindow.uss" />
+  <ui:VisualElement name="root" class="level-editor-window">
+    <ui:VisualElement class="window-header">
+      <ui:Label text="Map Editor" class="title" />
+      <ui:Label text="Choose a tool, configure its assets, then enable the shared Scene tool." class="description" />
+    </ui:VisualElement>
+
+    <ui:VisualElement class="tab-bar">
+      <ui:Button name="addToSceneTabButton" text="Add to Scene" class="tab-button tab-button-first" />
+      <ui:Button name="physicsSimulationTabButton" text="Physics Simulation" class="tab-button tab-button-middle" />
+      <ui:Button name="clotheslinesTabButton" text="Clotheslines" class="tab-button tab-button-last" />
+    </ui:VisualElement>
+
+    <ui:ScrollView name="toolScrollView" class="tool-scroll-view">
+      <ui:VisualElement name="sharedPlacementPanel" class="tool-tab-content">
+        <ui:VisualElement class="placement-mode-bar">
+          <ui:Button name="singlePlacementModeButton" text="Single" class="placement-mode-button" />
+          <ui:Button name="brushPlacementModeButton" text="Brush" class="placement-mode-button" />
+        </ui:VisualElement>
+
+        <ui:VisualElement name="brushSettingsPanel" class="brush-settings-panel hidden">
+          <ui:FloatField name="brushRadiusField" label="Brush Radius" value="1" />
+          <ui:FloatField name="brushSpacingField" label="Distance Between Spawns" value="1" />
+          <ui:IntegerField name="brushObjectsPerStepField" label="Objects Per Step" value="1" />
+          <ui:Toggle name="brushRandomizePositionToggle" label="Randomize Position Within Radius" value="true" />
+          <ui:Toggle name="brushAlignToSurfaceToggle" label="Align to Surface" value="false" />
+          <ui:Label text="Full object previews appear as you drag. Objects are created on mouse release." class="help-line" />
+          <ui:Label text="Objects Per Step controls how many spawn at each spacing mark." class="help-line" />
+        </ui:VisualElement>
+
+        <ui:VisualElement class="section-header">
+          <ui:Label text="Placeable Assets" class="section-title" />
+          <ui:VisualElement class="section-actions">
+            <ui:Button name="addSelectionButton" text="Add Selection" class="small-button" />
+            <ui:Button name="clearAssetsButton" text="Clear" class="small-button last-small-button" />
+          </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="assetCollectionBar" class="collection-bar" />
+        <ui:VisualElement name="assetThumbnailGrid" class="thumbnail-grid" />
+
+        <ui:VisualElement class="active-asset-box">
+          <ui:Label name="activeAssetLabel" text="Active Asset: —" class="active-asset-label" />
+        </ui:VisualElement>
+
+        <ui:Foldout text="Placement Settings" value="true" class="settings-foldout">
+          <ui:Label text="Prefab Selection" class="section-title" />
+          <ui:VisualElement class="placement-mode-bar prefab-selection-bar">
+            <ui:Button name="manualPrefabModeButton" text="Manual" class="placement-mode-button" />
+            <ui:Button name="randomPrefabModeButton" text="Random" class="placement-mode-button" />
+            <ui:Button name="sequentialPrefabModeButton" text="Sequential" class="placement-mode-button" />
+          </ui:VisualElement>
+          <ui:Toggle name="ignoreAfterSpawnToggle" label="Ignore After Spawn" value="true" />
+          <ui:Toggle name="alignToSurfaceToggle" label="Align to Surface" value="false" />
+          <ui:Label text="Random Rotation (0–360° per axis)" class="section-title" />
+          <ui:VisualElement class="axis-toggle-row">
+            <ui:Toggle name="randomRotationXToggle" label="X" value="false" />
+            <ui:Toggle name="randomRotationYToggle" label="Y" value="false" />
+            <ui:Toggle name="randomRotationZToggle" label="Z" value="false" />
+          </ui:VisualElement>
+          <ui:Label text="Random Scale Range (%)" class="section-title" />
+          <ui:VisualElement class="random-scale-range-row">
+            <ui:FloatField name="randomScaleMinimumField" label="Min" value="100" />
+            <ui:FloatField name="randomScaleMaximumField" label="Max" value="100" />
+          </ui:VisualElement>
+          <ui:Label text="Random values are fixed per preview/spawn. Scale is a uniform percentage of the prefab's original size." class="help-line" />
+          <ui:VisualElement name="placementAnchorContainer" class="placement-anchor-container" />
+          <ui:FloatField name="rotationStepField" label="Rotation Step (degrees)" value="15" />
+          <ui:FloatField name="verticalOffsetStepField" label="Vertical Offset Step (units)" value="0.25" />
+        </ui:Foldout>
+      </ui:VisualElement>
+
+      <ui:VisualElement name="addToSceneTab" class="tool-tab-content">
+        <ui:Label text="Place Prefabs and imported Models directly in the Scene View." class="description" />
+
+        <ui:VisualElement class="help-box">
+          <ui:Label text="Controls" class="section-title" />
+          <ui:Label text="Left Click: Spawn the active asset" class="help-line" />
+          <ui:Label text="[ and ]: Cycle through assets" class="help-line" />
+          <ui:Label text="Shift + Mouse Wheel: Rotate around World Y, or around the surface normal when aligned" class="help-line" />
+          <ui:Label text="Ctrl + Mouse Wheel: Move the object vertically (overrides Scene View zoom)" class="help-line" />
+          <ui:Label text="Align to Surface: Match the asset Up axis to the hit surface normal" class="help-line" />
+          <ui:Label text="Random Rotation: each checked axis gets an independent random angle from 0° to 360°" class="help-line" />
+          <ui:Label text="Random Scale Range: choose a uniform scale percentage between Min and Max; 100 / 100 keeps the original size" class="help-line" />
+          <ui:Label text="Placement Anchor: Use the object pivot, bounds center, or the bottom of its bounding box" class="help-line" />
+          <ui:Label text="Esc: Disable the active tool" class="help-line" />
+        </ui:VisualElement>
+      </ui:VisualElement>
+
+      <ui:VisualElement name="physicsSimulationTab" class="tool-tab-content hidden">
+        <ui:Label text="Place objects with the shared Add to Scene placement tool, preview the result, then simulate the active batch." class="description" />
+
+        <ui:Foldout text="Physics Simulation" value="true" class="settings-foldout">
+          <ui:FloatField name="physicsDurationField" label="Simulation Duration (seconds)" value="3" />
+          <ui:Toggle name="physicsAddRigidbodyToggle" label="Add Rigidbody If Missing" value="true" />
+          <ui:Toggle name="physicsAutoSimulateAfterSpawnToggle" label="Auto Simulate After Spawn" value="false" />
+          <ui:VisualElement class="physics-status-box">
+            <ui:Label text="Active Batch" class="section-title" />
+            <ui:Label name="physicsBatchLabel" text="No active batch. Enable the tool and place objects." class="help-line" />
+            <ui:Label name="physicsSelectionLabel" text="Scene Selection: 0 object(s)" class="help-line" />
+          </ui:VisualElement>
+          <ui:VisualElement class="physics-action-grid">
+            <ui:Button name="simulateBatchButton" text="Simulate Batch" class="primary-button physics-button" />
+            <ui:Button name="simulateSelectionButton" text="Simulate Selection" class="primary-button physics-button" />
+            <ui:Button name="confirmBatchButton" text="Confirm Batch" class="primary-button physics-button" />
+            <ui:Button name="cancelSimulationButton" text="Cancel Simulation" class="small-button physics-button" />
+          </ui:VisualElement>
+        </ui:Foldout>
+
+        <ui:VisualElement class="help-box">
+          <ui:Label text="Workflow" class="section-title" />
+          <ui:Label text="1. Enable this tool and click in the Scene View to create a new Physics Batch." class="help-line" />
+          <ui:Label text="2. Press Simulate Batch to preview the physical result for the configured duration." class="help-line" />
+          <ui:Label text="3. Confirm Batch to keep the final transforms, or Cancel Simulation to restore the original placement." class="help-line" />
+          <ui:Label text="Simulate Selection can be used for existing Scene objects, even when they were not created by this tool." class="help-line" />
+          <ui:Label text="Auto Simulate After Spawn makes each new object fall and settle immediately. Temporary Rigidbody components added by the tool are removed after simulation." class="help-line" />
+        </ui:VisualElement>
+      </ui:VisualElement>
+
+      <ui:VisualElement name="clotheslinesTab" class="tool-tab-content hidden">
+        <ui:Label text="Click any number of support points, then create wires and hanging objects along the path." class="description" />
+
+        <ui:VisualElement class="section-header">
+          <ui:Label text="Pole Prefabs" class="section-title" />
+          <ui:VisualElement class="section-actions">
+            <ui:Button name="addPoleSelectionButton" text="Add Selection" class="small-button" />
+            <ui:Button name="clearPolePrefabsButton" text="Clear" class="small-button last-small-button" />
+          </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:Label text="Pole Prefabs are cycled across clicked points. Disable pole creation to use anchor points only." class="help-line section-help" />
+        <ui:VisualElement name="poleCollectionBar" class="collection-bar" />
+        <ui:VisualElement name="poleThumbnailGrid" class="thumbnail-grid" />
+
+        <ui:VisualElement class="section-header section-header-spaced">
+          <ui:Label text="Hanging Objects" class="section-title" />
+          <ui:VisualElement class="section-actions">
+            <ui:Button name="addHangingSelectionButton" text="Add Selection" class="small-button" />
+            <ui:Button name="clearHangingPrefabsButton" text="Clear" class="small-button last-small-button" />
+          </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:Label text="Clothes, flags, banners, and other Prefabs spawn with their pivot on each wire span. Start and End are applied between every two Poles." class="help-line section-help" />
+        <ui:VisualElement name="hangingCollectionBar" class="collection-bar" />
+        <ui:VisualElement name="hangingThumbnailGrid" class="thumbnail-grid" />
+
+        <ui:Foldout text="Clothesline Settings" value="true" class="settings-foldout clothesline-settings">
+          <ui:VisualElement name="clotheslineControls" class="clothesline-controls" />
+        </ui:Foldout>
+
+        <ui:VisualElement class="help-box">
+          <ui:Label text="Controls" class="section-title" />
+          <ui:Label text="Left Click: Add another support point" class="help-line" />
+          <ui:Label text="Enter: Finish and create the Clothesline" class="help-line" />
+          <ui:Label text="Esc: Cancel the current path" class="help-line" />
+          <ui:Label text="After creation, select the Clothesline to edit pole and wire control points." class="help-line" />
+        </ui:VisualElement>
+      </ui:VisualElement>
+
+    </ui:ScrollView>
+
+    <ui:VisualElement class="tool-action-bar">
+      <ui:VisualElement class="active-tool-info">
+        <ui:Label text="Active Tool" class="tool-caption" />
+        <ui:Label name="activeToolLabel" text="Add to Scene" class="active-tool-label" />
+      </ui:VisualElement>
+      <ui:Button name="toolActionButton" text="Enable Tool" class="primary-button tool-action-button" />
+    </ui:VisualElement>
+
+    <ui:Label name="statusLabel" text="Ready" class="status-label" />
+  </ui:VisualElement>
+</ui:UXML>

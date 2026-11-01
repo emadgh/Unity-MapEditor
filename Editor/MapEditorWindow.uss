@@ -1,0 +1,389 @@
+:root {
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --panel: #252525;
+  --panel-dark: #1b1b1b;
+  --panel-light: #303030;
+  --border: #4c4c4c;
+  --accent: #4d9cff;
+  --accent-dark: #2f6fab;
+  --text: #eeeeee;
+  --text-muted: #b5b5b5;
+  --danger: #b34d4d;
+}
+
+.level-editor-window {
+  flex-grow: 1;
+  padding: 10px;
+  background-color: var(--panel);
+  color: var(--text);
+}
+
+.window-header {
+  margin-bottom: var(--spacing-sm);
+}
+
+.title {
+  margin-bottom: 2px;
+  font-size: 17px;
+  -unity-font-style: bold;
+}
+
+.description {
+  margin-bottom: var(--spacing-sm);
+  color: var(--text-muted);
+  white-space: normal;
+}
+
+.tab-bar {
+  flex-direction: row;
+  margin-bottom: var(--spacing-sm);
+  border-bottom-width: 1px;
+  border-bottom-color: var(--border);
+}
+
+.tab-button {
+  flex-grow: 1;
+  min-height: 28px;
+  margin-bottom: -1px;
+  border-bottom-width: 2px;
+  border-bottom-color: transparent;
+  background-color: var(--panel-dark);
+}
+
+.tab-button-first {
+  margin-right: 2px;
+}
+
+.tab-button-middle {
+  margin-left: 1px;
+  margin-right: 1px;
+}
+
+.tab-button-last {
+  margin-left: 2px;
+}
+
+.tab-button.active {
+  border-bottom-color: var(--accent);
+  background-color: var(--panel-light);
+  color: #ffffff;
+  -unity-font-style: bold;
+}
+
+.tool-scroll-view {
+  flex-grow: 1;
+  min-height: 280px;
+}
+
+.tool-tab-content {
+  padding-right: var(--spacing-xs);
+}
+
+.placement-mode-bar {
+  flex-direction: row;
+  margin-bottom: var(--spacing-sm);
+  border-bottom-width: 1px;
+  border-bottom-color: var(--border);
+}
+
+.placement-mode-button {
+  flex-grow: 1;
+  min-height: 26px;
+  margin-right: 2px;
+  margin-bottom: -1px;
+  border-bottom-width: 2px;
+  border-bottom-color: transparent;
+  background-color: var(--panel-dark);
+}
+
+.placement-mode-button.active {
+  border-bottom-color: var(--accent);
+  background-color: var(--panel-light);
+  color: #ffffff;
+  -unity-font-style: bold;
+}
+
+.axis-toggle-row,
+.random-scale-range-row {
+  flex-direction: row;
+  align-items: center;
+}
+
+.axis-toggle-row > Toggle {
+  flex-grow: 1;
+}
+
+.random-scale-range-row > FloatField {
+  flex-grow: 1;
+  margin-right: var(--spacing-xs);
+}
+
+.random-scale-range-row > FloatField:last-child {
+  margin-right: 0;
+}
+
+.brush-settings-panel {
+  margin-bottom: var(--spacing-sm);
+  padding: var(--spacing-xs);
+  border-width: 1px;
+  border-color: var(--border);
+  background-color: var(--panel-dark);
+}
+
+.hidden {
+  display: none;
+}
+
+.section-header {
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: var(--spacing-xs);
+}
+
+.section-header-spaced {
+  margin-top: var(--spacing-md);
+}
+
+.section-title {
+  flex-grow: 1;
+  -unity-font-style: bold;
+}
+
+.section-actions {
+  flex-direction: row;
+}
+
+.small-button {
+  min-width: 74px;
+  margin-right: 3px;
+}
+
+.last-small-button {
+  margin-right: 0;
+}
+
+.section-help {
+  margin-bottom: var(--spacing-xs);
+}
+
+.collection-bar {
+  flex-direction: row;
+  align-items: flex-end;
+  margin-bottom: var(--spacing-xs);
+  padding: var(--spacing-xs);
+  border-width: 1px;
+  border-color: #3e3e3e;
+  background-color: #292929;
+}
+
+.collection-popup {
+  flex-grow: 1;
+  margin-right: var(--spacing-xs);
+}
+
+.collection-button {
+  min-width: 92px;
+  min-height: 22px;
+  margin-right: 3px;
+}
+
+.collection-button-last {
+  margin-right: 0;
+}
+
+.thumbnail-grid {
+  flex-direction: row;
+  flex-wrap: wrap;
+  min-height: 118px;
+  max-height: 264px;
+  padding: var(--spacing-xs);
+  border-width: 1px;
+  border-color: var(--border);
+  background-color: var(--panel-dark);
+}
+
+.thumbnail-card {
+  position: relative;
+  width: 104px;
+  min-height: 104px;
+  margin-right: var(--spacing-xs);
+  margin-bottom: var(--spacing-xs);
+  padding: 3px;
+  border-width: 1px;
+  border-color: #3e3e3e;
+  background-color: #292929;
+}
+
+.thumbnail-card.active {
+  border-color: var(--accent);
+  background-color: #26384a;
+}
+
+.thumbnail-select-button {
+  flex-grow: 1;
+  min-height: 96px;
+  padding: 2px;
+  background-color: transparent;
+  border-width: 0;
+}
+
+.thumbnail-image {
+  width: 86px;
+  height: 72px;
+  margin-bottom: 3px;
+  -unity-background-scale-mode: scale-to-fit;
+}
+
+.thumbnail-name {
+  min-height: 26px;
+  font-size: 10px;
+  -unity-text-align: middle-center;
+  white-space: normal;
+}
+
+.thumbnail-remove-button {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 18px;
+  height: 18px;
+  min-width: 18px;
+  min-height: 18px;
+  padding: 0;
+  border-radius: 9px;
+  border-width: 1px;
+  border-color: #d47a7a;
+  color: #ffcccc;
+  background-color: #4a2929;
+  -unity-font-style: bold;
+  -unity-text-align: middle-center;
+}
+
+.thumbnail-remove-button:hover {
+  background-color: #7a3333;
+}
+
+.thumbnail-empty-label {
+  flex-grow: 1;
+  margin-top: 42px;
+  color: #838383;
+  -unity-text-align: middle-center;
+  white-space: normal;
+}
+
+.active-asset-box {
+  margin-top: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm);
+  padding: 7px;
+  border-width: 1px;
+  border-color: var(--border);
+  background-color: var(--panel-light);
+}
+
+.active-asset-label {
+  color: #ffffff;
+  -unity-font-style: bold;
+  white-space: normal;
+}
+
+.settings-foldout {
+  margin-bottom: var(--spacing-sm);
+  padding: var(--spacing-xs);
+  border-width: 1px;
+  border-color: var(--border);
+}
+
+.placement-anchor-container {
+  margin-top: var(--spacing-xs);
+  margin-bottom: var(--spacing-xs);
+}
+
+.clothesline-settings {
+  margin-top: var(--spacing-md);
+}
+
+.clothesline-controls {
+  margin-top: var(--spacing-xs);
+}
+
+.help-box {
+  margin-bottom: var(--spacing-sm);
+  padding: 7px;
+  border-width: 1px;
+  border-color: var(--border);
+  background-color: var(--panel-dark);
+}
+
+.physics-status-box {
+  margin-bottom: var(--spacing-sm);
+  padding: 7px;
+  border-width: 1px;
+  border-color: var(--border);
+  background-color: var(--panel-light);
+}
+
+.physics-action-grid {
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-bottom: var(--spacing-sm);
+}
+
+.physics-button {
+  flex-grow: 1;
+  min-width: 138px;
+  margin-right: 3px;
+  margin-bottom: 3px;
+}
+
+.help-line {
+  margin-bottom: 2px;
+  color: var(--text-muted);
+  white-space: normal;
+}
+
+.tool-action-bar {
+  flex-direction: row;
+  align-items: center;
+  margin-top: var(--spacing-sm);
+  padding: var(--spacing-sm);
+  border-width: 1px;
+  border-color: var(--border);
+  background-color: var(--panel-light);
+}
+
+.active-tool-info {
+  flex-grow: 1;
+}
+
+.tool-caption {
+  color: var(--text-muted);
+  font-size: 9px;
+}
+
+.active-tool-label {
+  color: #ffffff;
+  -unity-font-style: bold;
+}
+
+.tool-action-button {
+  min-width: 138px;
+  min-height: 30px;
+}
+
+.primary-button {
+  color: white;
+  background-color: var(--accent-dark);
+}
+
+.primary-button.active {
+  background-color: var(--danger);
+}
+
+.status-label {
+  min-height: 24px;
+  padding-top: 6px;
+  color: #9bd3ff;
+  white-space: normal;
+}
